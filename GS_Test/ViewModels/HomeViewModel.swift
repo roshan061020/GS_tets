@@ -72,9 +72,9 @@ class HomeViewModel{
             filteredUsers.value = users ?? []
         }
         else{
-            filteredUsers.value = users!.filter({ (user) -> Bool in
+            filteredUsers.value = users?.filter({ (user) -> Bool in
                 user.gender == gender
-            })
+            }) ?? []
         }
     }
     

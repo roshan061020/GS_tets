@@ -26,6 +26,9 @@ class HomeViewController: UIViewController {
         homeViewmodel.filteredUsers.bindAndFire({ (users) in
             DispatchQueue.main.async {[weak self] in
                 self?.tableview.reloadData()
+                if users.count > 0{
+                    self?.tableview.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                }
             }
         })
         homeViewmodel.errorMessage.bindAndFire { [weak self](errorMessage) in
@@ -40,7 +43,6 @@ class HomeViewController: UIViewController {
     
     @IBAction func segmentChnaged(_ sender: UISegmentedControl){
         homeViewmodel.Filter(homeViewmodel.genderSegment[sender.selectedSegmentIndex])
-        tableview.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
     }
 }
 
